@@ -99,7 +99,7 @@
 
     <!-- Preloader -->
     <div id="preloader">
-        <img src="{{ asset('storage/logo/logo_pi-removebg-preview.png') }}" alt="Loading..." class="preloader-logo">
+        <img src="{{ asset('tamplate/assets/img/logo/logopt.png') }}" alt="Loading..." class="preloader-logo">
         <div class="preloader-text">
             <span class="purple-shadow">Indo</span>
             <span class="gold-shadow">Pinet</span>
