@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy to Hostinger (Subdomain)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Laravel to Hostinger
+    name: Deploy Laravel to Subdomain
     runs-on: ubuntu-latest
 
     steps:
@@ -24,28 +24,22 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -p ${{ secrets.HOSTINGER_PORT }} -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} << 'EOF'
+            cd ~/domains/indopinetmart.srf-group.com
 
-            # Buat folder pinetmart jika belum ada, lalu clone atau pull
-            if [ ! -d ~/pinetmart ]; then
-              mkdir -p ~/pinetmart
-              git clone https://github.com/indopinetmart/web_IPM.git ~/pinetmart
+            if [ ! -d "pinetmart" ]; then
+              git clone git@github.com:indopinetmart/web_IPM.git pinetmart
             else
-              cd ~/pinetmart
+              cd pinetmart
               git pull origin main
             fi
 
-            cd ~/pinetmart
-
-            # Install dependency Laravel
-            /usr/local/bin/composer install --no-interaction --prefer-dist --optimize-autoloader || composer install --no-interaction --prefer-dist --optimize-autoloader
-
-            # Artisan commands
+            cd pinetmart
+            /usr/local/bin/composer install --no-interaction --prefer-dist --optimize-autoloader || composer install
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-            # Replace index.php di public_html agar mengarah ke Laravel
             echo "<?php
             require __DIR__.'/../pinetmart/vendor/autoload.php';
             \$app = require_once __DIR__.'/../pinetmart/bootstrap/app.php';
@@ -53,5 +47,5 @@ jobs:
             \$response = \$kernel->handle(
                 \$request = Illuminate\\Http\\Request::capture()
             )->send();
-            \$kernel->terminate(\$request, \$response);" > ~/public_html/index.php
+            \$kernel->terminate(\$request, \$response);" > ~/domains/indopinetmart.srf-group.com/public_html/index.php
           EOF
