@@ -1,0 +1,44 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Laravel to Hostinger
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOSTINGER_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.HOSTINGER_PORT }} ${{ secrets.HOSTINGER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via SSH
+        run: |
+          ssh -p ${{ secrets.HOSTINGER_PORT }} -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} << 'EOF'
+            cd ~/pinetmart
+            git pull origin main
+            /usr/local/bin/composer install --no-interaction --prefer-dist --optimize-autoloader || composer install --no-interaction --prefer-dist --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Replace index.php di public_html agar mengarah ke Laravel
+            echo "<?php
+            require __DIR__.'/../pinetmart/vendor/autoload.php';
+            \$app = require_once __DIR__.'/../pinetmart/bootstrap/app.php';
+            \$kernel = \$app->make(Illuminate\\Contracts\\Http\\Kernel::class);
+            \$response = \$kernel->handle(
+                \$request = Illuminate\\Http\\Request::capture()
+            )->send();
+            \$kernel->terminate(\$request, \$response);" > ~/public_html/index.php
+          EOF
