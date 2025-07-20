@@ -1,0 +1,54 @@
+
+services:
+  # PHP-FPM Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: indopinetmart-php
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    expose:
+      - "9000" # untuk fastcgi_pass dari nginx
+    networks:
+      - indopinetmart
+
+  # NGINX Webserver
+  webserver:
+    image: nginx:alpine
+    container_name: indopinetmart-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"      # HTTP → http://localhost:8000
+      - "443:443"      # HTTPS → https://indopinetmart.local
+    volumes:
+      - .:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl:/etc/nginx/ssl      # 👈 Gunakan folder ssl sesuai cert mkcert
+    depends_on:
+      - app
+    networks:
+      - indopinetmart
+
+  # MySQL DB
+  db:
+    image: mysql:5.7
+    container_name: indopinetmart-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - indopinetmart
+
+networks:
+  indopinetmart:
+
+volumes:
+  dbdata:

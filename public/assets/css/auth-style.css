@@ -1,0 +1,205 @@
+/* RESET & BASE */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: url('../../tamplate/assets/img/background_abu.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: #FFD700;
+    text-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+}
+
+/* GLOBAL TEXT STYLING */
+body, h1, h2, h3, h4, h5, h6, p, label, input, select, textarea, span {
+    color: #FFD700;
+    text-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+}
+
+/* WRAPPER */
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+.login-container {
+    position: relative;
+    padding: 3rem 2rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.6s ease;
+}
+
+/* LOGO */
+.logo-floating {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    /* background: rgba(255, 255, 255, 0.8); */
+    /* border-radius: 50%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* box-shadow: 0 0 8px rgba(255, 215, 0, 0.3); */
+}
+.logo-floating img {
+    width: 80%;
+    height: auto;
+    user-select: none;
+}
+
+/* TEXT */
+.text-gold {
+    color: #FFD700;
+    font-weight: 500;
+}
+.text-center {
+    text-align: center;
+}
+
+/* INPUT */
+.input-group-text {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #000;
+}
+.form-control, .form-select {
+    border: none;
+    border-radius: 0.375rem;
+    outline: none;
+}
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 2px rgba(255, 187, 0, 0.25);
+}
+
+/* PASSWORD TOGGLE */
+.btn-password-toggle {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0 0.5rem;
+    cursor: pointer;
+    color: #000;
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+}
+.btn-password-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem rgba(255, 215, 0, 0.4);
+}
+
+/* BUTTON */
+.btn-login {
+    background-color: #FFD700;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    padding: 0.6rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* AUTOMATIC SHINE EFFECT */
+.btn-login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    transform: skewX(-20deg);
+    animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% { left: -75%; }
+    100% { left: 125%; }
+}
+
+/* TOGGLE LINK */
+.toggle-link {
+    color: #FFD700;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 2px rgba(255, 215, 0, 0.6);
+}
+.toggle-link:hover {
+    text-decoration: underline;
+}
+
+/* FORM DISPLAY TOGGLE */
+#register-form,
+#forgot-password-form {
+    display: none;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* OPTIONAL: GLOWING GOLD TEXT */
+.gold-glow {
+    color: #FFD700;
+    animation: goldGlow 2s infinite;
+    text-shadow: 0 0 5px #FFD700, 0 0 10px rgba(255, 165, 0, 0.4);
+}
+@keyframes goldGlow {
+    0%, 100% { text-shadow: 0 0 3px #FFD700, 0 0 6px #FFD700; }
+    50% { text-shadow: 0 0 6px #FFD700, 0 0 12px #FFA500; }
+}
+
+/* OPTIONAL: SHINING TEXT EFFECT */
+.shine-text {
+    background: linear-gradient(
+        to right,
+        #FFD700 20%,
+        #FFFFFF 40%,
+        #FFD700 60%
+    );
+    background-size: 200% auto;
+    color: #FFD700;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 2.5s linear infinite;
+}
+@keyframes shineText {
+    0% {
+        background-position: -100% center;
+    }
+    100% {
+        background-position: 100% center;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 420px) {
+    .login-container {
+        padding: 2rem 1rem;
+    }
+}
