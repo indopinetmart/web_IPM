@@ -24,9 +24,22 @@ jobs:
       - name: Deploy via SSH
         run: |
           ssh -p ${{ secrets.HOSTINGER_PORT }} -o StrictHostKeyChecking=no ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} << 'EOF'
+
+            # Buat folder pinetmart jika belum ada, lalu clone atau pull
+            if [ ! -d ~/pinetmart ]; then
+              mkdir -p ~/pinetmart
+              git clone https://github.com/indopinetmart/web_IPM.git ~/pinetmart
+            else
+              cd ~/pinetmart
+              git pull origin main
+            fi
+
             cd ~/pinetmart
-            git pull origin main
+
+            # Install dependency Laravel
             /usr/local/bin/composer install --no-interaction --prefer-dist --optimize-autoloader || composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            # Artisan commands
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
