@@ -1,6 +1,6 @@
 # IndoPinetmart
 
-Ini adalah aplikasi Laravel untuk toko IndoPinetmart.
+Ini adalah Web Resmi IndoPinetmart.
 
 ## Fitur:
 - Informasi Tentang IndoPinetMart
