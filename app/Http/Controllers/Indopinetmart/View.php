@@ -25,4 +25,9 @@ class View extends Controller
     {
         return view('perwira.view_perwira'); // Ganti sesuai isi halaman PERWIRA kamu
     }
+
+
+     public function underconstruction(){
+        return view('indopinetmart.under_construction');
+     }
 }

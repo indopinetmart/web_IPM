@@ -32,11 +32,11 @@
                 <!-- Tombol Download -->
                 <div
                     class="mt-4 text-center d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-android">
                         <i class="bi bi-android2 me-1"></i> Download for Android
                     </a>
-                    <a href="https://apps.apple.com/id/app/example-app/id123456789" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-ios">
                         <i class="bi bi-apple me-1"></i> Download on App Store
                     </a>
@@ -59,11 +59,11 @@
                 <!-- Tombol Download -->
                 <div
                     class="mt-4 text-center d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-android">
                         <i class="bi bi-android2 me-1"></i> Download for Android
                     </a>
-                    <a href="https://apps.apple.com/id/app/example-app/id123456789" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-ios">
                         <i class="bi bi-apple me-1"></i> Download on App Store
                     </a>
@@ -110,11 +110,11 @@
                 <!-- Tombol Download -->
                 <div
                     class="mt-4 text-center d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-android">
                         <i class="bi bi-android2 me-1"></i> Download for Android
                     </a>
-                    <a href="https://apps.apple.com/id/app/example-app/id123456789" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-ios">
                         <i class="bi bi-apple me-1"></i> Download on App Store
                     </a>
@@ -136,11 +136,11 @@
                 <!-- Tombol Download -->
                 <div
                     class="mt-4 text-center d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-android">
                         <i class="bi bi-android2 me-1"></i> Download for Android
                     </a>
-                    <a href="https://apps.apple.com/id/app/example-app/id123456789" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-ios">
                         <i class="bi bi-apple me-1"></i> Download on App Store
                     </a>
@@ -163,11 +163,11 @@
                 <!-- Tombol Download -->
                 <div
                     class="mt-4 text-center d-flex flex-column flex-md-row justify-content-center align-items-stretch gap-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-android">
                         <i class="bi bi-android2 me-1"></i> Download for Android
                     </a>
-                    <a href="https://apps.apple.com/id/app/example-app/id123456789" target="_blank"
+                    <a href="{{ route('under.construction') }}" target="_blank"
                         class="btn btn-download-ios">
                         <i class="bi bi-apple me-1"></i> Download on App Store
                     </a>

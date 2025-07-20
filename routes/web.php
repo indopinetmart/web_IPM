@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [View::class, 'index']);
+Route::get('/under-construction', [View::class, 'underconstruction'])->name('under.construction');
 
 
 /*
